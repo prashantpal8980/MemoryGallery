@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+{% block title %}
+Portfolio - Home
+{% endblock title %}
+
+{% block content %}
+<div class="container-fluid bg-light py-5" style="background-image: url('https://t3.ftcdn.net/jpg/09/19/88/80/360_F_919888098_me6kBHPwVhDHdTuos7XrgfrkdQVVu9qO.jpg'); background-size: cover; background-position: center;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2 text-center text-white">
+                <h1 class="display-4 mb-4">Welcome to My Portfolio</h1>
+                <p class="lead">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+                <a href="{% url 'projects' %}" class="btn btn-primary btn-lg mt-3">View My Projects</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body bg-light rounded">
+                    <h5 class="card-title">About Me</h5>
+                    <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </p>
+                    <a href="{% url 'about' %}" class="btn btn-outline-secondary btn-sm">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body bg-light rounded">
+                    <h5 class="card-title">My Skills</h5>
+                    <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </p>
+                    <ul class="list-unstyled">
+                        <li>Python</li>
+                        <li>Django</li>
+                        <li>JavaScript</li>
+                        <li>HTML/CSS</li>
+                        <li>Bootstrap</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body bg-light rounded">
+                    <h5 class="card-title">Get in Touch</h5>
+                    <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </p>
+                    <a href="{% url 'contact' %}" class="btn btn-outline-secondary btn-sm">Contact Me</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block scripts_extra %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const hero = document.querySelector('.bg-light');
+        hero.style.animation = 'fadeIn 1s ease-in-out';
+    });
+</script>
+<style>
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+</style>
+{% endblock scripts_extra %} 

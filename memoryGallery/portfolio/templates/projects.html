@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}Projects{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">My Projects</h1>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <img src="https://as2.ftcdn.net/v2/jpg/08/37/59/47/1000_F_837594712_tZqfNrW8awpcKOqA5bRCvZvz199EuPKK.jpg" class="card-img-top" alt="Project 1 Image">
+                <div class="card-body">
+                    <h5 class="card-title">Project 1 Title</h5>
+                    <p class="card-text">
+                        Short description of Project 1. You can add more details here.
+                    </p>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <img src="{% static 'images/project2.jpg' %}" class="card-img-top" alt="Project 2 Image">
+                <div class="card-body">
+                    <h5 class="card-title">Project 2 Title</h5>
+                    <p class="card-text">
+                        Short description of Project 2. You can add more details here.
+                    </p>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <img src="{% static 'images/project3.jpg' %}" class="card-img-top" alt="Project 3 Image">
+                <div class="card-body">
+                    <h5 class="card-title">Project 3 Title</h5>
+                    <p class="card-text">
+                        Short description of Project 3. You can add more details here.
+                    </p>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <img src="{% static 'images/project4.jpg' %}" class="card-img-top" alt="Project 4 Image">
+                <div class="card-body">
+                    <h5 class="card-title">Project 4 Title</h5>
+                    <p class="card-text">
+                        Short description of Project 4. You can add more details here.
+                    </p>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}

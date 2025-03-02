@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}About Me{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <section id="profile" class="mb-5">
+        <div class="row align-items-center">
+            <div class="col-md-4 text-center">
+                <div class="profile-image">
+                    <img src="https://m.media-amazon.com/images/I/61FkgeEHINL._AC_UF1000,1000_QL80_.jpg" alt="Your Profile Picture" class="img-fluid rounded-circle">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="profile-details">
+                    <h2>Your Name</h2>
+                    <p class="lead">Your Profession/Title</p>
+                    <p><strong>Location:</strong> Your City, Your Country</p>
+                    <p><strong>Email:</strong> your.email@example.com</p>
+                    <p><strong>Phone:</strong> Your Phone Number (optional)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="bio" class="mb-5">
+        <h2>My Story</h2>
+        <p>
+            Write a compelling and engaging narrative about yourself. Discuss your background, your passions, and what drives you.
+            You can talk about your education, your career journey, and any significant experiences that have shaped you.
+            Don't be afraid to add some personal touches to make it unique.
+            For example: "From a young age, I've been fascinated by..." or "My passion for [something] started when..."
+        </p>
+        <p>
+            Add more paragraphs as needed.
+        </p>
+    </section>
+
+    <section id="skills" class="mb-5">
+        <h2>Skills</h2>
+        <ul class="list-unstyled">
+            <li>Skill 1</li>
+            <li>Skill 2</li>
+            <li>Skill 3</li>
+            <li>Skill 4</li>
+            <li>...</li>
+        </ul>
+    </section>
+
+    <section id="interests" class="mb-5">
+        <h2>Interests</h2>
+        <p>
+            Mention your hobbies, interests, and passions outside of work.
+            This helps people connect with you on a more personal level.
+        </p>
+        <ul class="list-unstyled">
+            <li>Interest 1</li>
+            <li>Interest 2</li>
+            <li>Interest 3</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Connect with Me</h2>
+        <p>
+            Feel free to reach out to me via email or connect with me on social media.
+        </p>
+        <div class="social-links">
+            <a href="#" target="_blank" class="btn btn-outline-secondary me-2">LinkedIn</a>
+            <a href="#" target="_blank" class="btn btn-outline-secondary me-2">GitHub</a>
+            <a href="#" target="_blank" class="btn btn-outline-secondary">Twitter</a>
+        </div>
+    </section>
+</div>
+
+<style>
+    .profile-image img {
+        max-width: 200px;
+        height: auto;
+    }
+
+    #bio h2, #skills h2, #interests h2, #contact h2 {
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    .social-links a {
+        margin-right: 10px;
+    }
+</style>
+{% endblock content %}
