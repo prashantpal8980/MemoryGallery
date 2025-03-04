@@ -1,0 +1,25 @@
+{% extends "incidentLayout.html" %}
+{% block title %}
+incident List
+{% endblock title %}
+{% block content %}
+<h1>All the incidents are listed here</h1>
+<a class="btn btn-primary mb-4" href="{% url 'IncidentCreated'%}">Create new indcident</a>
+<div class="container row gap-3">
+    {% for incident in incidents %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{incident.photo.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{incident.user.username}}</h5>
+          <p class="card-text">{{incident.text}}.</p>
+
+          {% if incident.user == user %}
+          <a href="{% url 'IncidentEdited' incident.id %}" class="btn btn-primary">Edit</a>
+          {% comment "name" %} this is comming from url name IncidentDelete{% endcomment %}
+          <a href="{% url 'IncidentDelete' incident.id %}" class="btn btn-danger">delete</a>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+</div>
+{% endblock content %}

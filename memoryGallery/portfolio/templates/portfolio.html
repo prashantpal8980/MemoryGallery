@@ -4,13 +4,24 @@ Portfolio - Home
 {% endblock title %}
 
 {% block content %}
-<div class="container-fluid bg-light py-5" style="background-image: url('https://t3.ftcdn.net/jpg/09/19/88/80/360_F_919888098_me6kBHPwVhDHdTuos7XrgfrkdQVVu9qO.jpg'); background-size: cover; background-position: center;">
+<style>
+    .custom-text {
+        font-size: 18px; /* Larger and readable */
+        color: #ffffff; /* White text for clarity */
+        font-weight: 400; /* Medium bold */
+        text-align: center;
+        text-shadow: 2px 2px 15px rgba(0, 255, 255, 0.8); /* Neon glow effect */
+    }
+</style>
+<div class="container-fluid bg-light py-5" style="background-image: url('{{image}}'); background-size: cover; background-position: center;">
     <div class="container">
         <div class="row">
             <div class="col-md-8 offset-md-2 text-center text-white">
                 <h1 class="display-4 mb-4">Welcome to My Portfolio</h1>
-                <p class="lead">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                <p class="custom-text">
+                    🚀 Turning Ideas into Reality with Code & Creativity
+
+                    Hi, I'm Prashant Pal, a tech enthusiast passionate about Linux, full-stack web development, and cybersecurity. I love crafting elegant solutions, optimizing systems, and building projects that blend functionality with creativity. Explore my portfolio to see my journey, skills, and the projects I’ve built!    
                 </p>
                 <a href="{% url 'projects' %}" class="btn btn-primary btn-lg mt-3">View My Projects</a>
             </div>
@@ -25,7 +36,25 @@ Portfolio - Home
                 <div class="card-body bg-light rounded">
                     <h5 class="card-title">About Me</h5>
                     <p class="card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        <p>
+                            Hey there! I'm <strong>Prashant Pal</strong>, a tech enthusiast who loves diving deep into 
+                            <strong>Linux, Python with Django, and full-stack web development</strong>. 
+                        </p>
+                    
+                        <h3>My Projects</h3>
+                        <ul>
+                            <li><strong>🚀 Portfolio Website</strong> – A digital space that reflects my journey and skills.</li>
+                            <li><strong>🖼️ Memory Gallery</strong> – A unique project that captures and stores unforgettable moments.</li>
+                        </ul>
+                        <h3>Beyond Coding</h3>
+                        <p>
+                            Beyond development, you'll often find me <strong>exploring Linux distros, learning about computer 
+                            and laptop hardware, listening to music, or getting lost in a good book</strong>.
+                        </p>
+                    
+                        <p>
+                            Let’s connect and build something amazing together! 🚀
+                        </p>  
                     </p>
                     <a href="{% url 'about' %}" class="btn btn-outline-secondary btn-sm">Learn More</a>
                 </div>
@@ -36,16 +65,18 @@ Portfolio - Home
                 <div class="card-body bg-light rounded">
                     <h5 class="card-title">My Skills</h5>
                     <p class="card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Proficient in full-stack development, scripting, and system optimization.
                     </p>
                     <ul class="list-unstyled">
-                        <li>Python</li>
-                        <li>Django</li>
-                        <li>JavaScript</li>
+                        <li>Linux</li>
+                        <li>Python (Django)</li>
+                        <li>Java</li>
                         <li>HTML/CSS</li>
                         <li>Bootstrap</li>
+                        <li>Nessus</li>
                     </ul>
                 </div>
+                
             </div>
         </div>
         <div class="col-md-4">
@@ -53,8 +84,13 @@ Portfolio - Home
                 <div class="card-body bg-light rounded">
                     <h5 class="card-title">Get in Touch</h5>
                     <p class="card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Have a project idea, a tech question, or just want to chat? Feel free to connect with me!  
+                        I'm always open to discussing web development, Linux, cybersecurity, or anything tech-related.
                     </p>
+                    <p class="card-text">
+                        Let's collaborate and build something amazing together! 🚀
+                    </p>
+
                     <a href="{% url 'contact' %}" class="btn btn-outline-secondary btn-sm">Contact Me</a>
                 </div>
             </div>

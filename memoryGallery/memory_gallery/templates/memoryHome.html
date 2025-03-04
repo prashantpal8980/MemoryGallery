@@ -1,24 +1,24 @@
 {% extends "memorygalleryLayout.html" %}
 {% load static %}
-
-{% block title %}Memory Gallery Home{% endblock title %}
-
+{% block title %}memory gallery home{% endblock title %}
 {% block content %}
-<div id="galleryCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        {% for image in image_urls %}
-            <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                <img src="{{ image }}" class="d-block w-100" alt="Gallery Image">
+<div class="container mt-4">
+   
+    <div class="container text-center">
+        <h1 class="mb-4">Memory Gallery</h1>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            {% for image, description in image_data %}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="{{ image }}" class="card-img-top" alt="Gallery Image">
+                    <div class="card-body">
+                        <p class="card-text">{{ description }}</p>
+                    </div>
+                </div>
             </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
+    
 </div>
 {% endblock content %}

@@ -2,7 +2,9 @@ from django.shortcuts import render
 
 # Create your views here.
 def portfolio(request):
-    return render(request, 'portfolio.html')
+    
+    image="/static/images/test.jpg"
+    return render(request, 'portfolio.html',{"image": image})
 
 def projects(request):
     return render(request, 'projects.html')

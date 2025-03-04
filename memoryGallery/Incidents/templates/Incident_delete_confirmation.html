@@ -1,0 +1,12 @@
+{% extends "incidentLayout.html" %}
+{% block title %}
+incident delete
+{% endblock title %}
+{% block content %}
+<h1>Are you sure you want to delete these precious memories</h1>
+<form method="post">
+    {% csrf_token %}
+    <button class="btn btn-danger">delete </button>
+    <a href="{% url 'IncidentSeenHere' %}" class="btn btn-success">cancel</a>
+</form>
+{% endblock content %}
