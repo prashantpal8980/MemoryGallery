@@ -1,16 +1,17 @@
 {% extends "memorygalleryLayout.html" %}
 {% load static %}
-{% block title %}memory gallery home{% endblock title %}
+{% block title %}Memory Gallery Home{% endblock title %}
 {% block content %}
+
 <div class="container mt-4">
-   
     <div class="container text-center">
         <h1 class="mb-4">Memory Gallery</h1>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-            {% for image, description in image_data %}
+            {% for image, description, music in image_data %}
             <div class="col">
                 <div class="card shadow-sm">
-                    <img src="{{ image }}" class="card-img-top" alt="Gallery Image">
+                    <img src="{{ image }}" class="card-img-top img-thumbnail" alt="Gallery Image"
+                        onclick="showImageModal('{{ image }}', '{{ description }}', '{{ music }}')">
                     <div class="card-body">
                         <p class="card-text">{{ description }}</p>
                     </div>
@@ -19,6 +20,46 @@
             {% endfor %}
         </div>
     </div>
-    
 </div>
+
+<!-- Modal for Full-Screen Image -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalDescription"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    onclick="stopMusic()"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="modalImage" class="img-fluid" style="max-height: 80vh;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hidden Audio Element -->
+<audio id="backgroundMusic" loop></audio>
+
+<!-- JavaScript to Handle Modal and Music -->
+<script>
+    function showImageModal(imageSrc, description, musicSrc) {
+        document.getElementById('modalImage').src = imageSrc;
+        document.getElementById('modalDescription').textContent = description;
+
+        var music = document.getElementById('backgroundMusic');
+        music.src = musicSrc;  // Set the correct music source
+        music.play();
+
+        var modal = new bootstrap.Modal(document.getElementById('imageModal'));
+        modal.show();
+    }
+
+    function stopMusic() {
+        var music = document.getElementById('backgroundMusic');
+        music.pause();
+        music.currentTime = 0;
+    }
+</script>
+
 {% endblock content %}

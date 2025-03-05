@@ -43,7 +43,7 @@
                         </form>
                         
                     {% else %}
-                        <a href="{% url 'register'%}" class="btn btn-primary mx-2">Register</a>
+                        {% comment %} <a href="{% url 'register'%}" class="btn btn-primary mx-2">Register</a> {% endcomment %}
                         <a href="{% url 'login'%}" class="btn btn-success mx-2">login</a>
                     {% endif %}
                     </div>

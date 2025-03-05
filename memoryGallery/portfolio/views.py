@@ -4,10 +4,12 @@ from django.shortcuts import render
 def portfolio(request):
     
     image="/static/images/test.jpg"
+    # image="/static/images/besttest2.jpg"
     return render(request, 'portfolio.html',{"image": image})
 
 def projects(request):
-    return render(request, 'projects.html')
+    image="/static/images/project_image.jpg"
+    return render(request, 'projects.html',{"image": image})
 
 def about(request):
     return render(request, 'about.html')

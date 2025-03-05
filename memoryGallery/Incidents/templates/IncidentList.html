@@ -1,14 +1,33 @@
 {% extends "incidentLayout.html" %}
+{% load static %}
 {% block title %}
 incident List
 {% endblock title %}
 {% block content %}
+<style>
+  .card {
+    background-color: #1a1a2e !important; /* Force dark navy blue */
+    color: #e0e0e0; /* Light gray for readability */
+    border: 1px solid #0f3460; /* Neon blue border */
+    
+    transition: all 0.3s ease-in-out;
+    width: 18rem;
+}
+.card-title {
+  color: #00d4ff; /* Neon cyan for headings */
+  
+}
+</style>
 <h1>All the incidents are listed here</h1>
 <a class="btn btn-primary mb-4" href="{% url 'IncidentCreated'%}">Create new indcident</a>
 <div class="container row gap-3">
     {% for incident in incidents %}
     <div class="card" style="width: 18rem;">
-        <img src="{{incident.photo.url}}" class="card-img-top" alt="...">
+        {% if incident.photo %}
+            <img src="{{ incident.photo.url }}" class="card-img-top" alt="Incident Photo">
+        {% else %}
+            <img src="{% static 'images/test.jpeg' %}" class="card-img-top" alt="Default Image">
+        {% endif %}
         <div class="card-body">
           <h5 class="card-title">{{incident.user.username}}</h5>
           <p class="card-text">{{incident.text}}.</p>

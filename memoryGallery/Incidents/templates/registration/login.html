@@ -7,7 +7,8 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="btn btn-primary">Register</button>
+        <button class="btn btn-primary">Login</button>
     </form>
-    <p>dont have a account <a href="{% url 'register'%}">register</a></p>
+    {% comment %} <p>dont have a account <a href="{% url 'register'%}">register</a></p> {% endcomment %}
+    <p>dont have a account <a href="#">you are not my friend not allowed to visit</a></p>
 {% endblock content %}

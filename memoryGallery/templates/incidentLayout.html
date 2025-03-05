@@ -11,6 +11,12 @@
         body {
             background-color: #343a40;
             color: #f8f9fa;
+
+            .card {
+                background-color: #454d55;
+                color: #f8f9fa;
+                border: 1px solid #6c757d;
+            }
         }
         
     </style>
@@ -44,10 +50,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Incidents</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'memorygallery' %}">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Recent Works</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'IncidentSeenHere'%}">Incidents</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'Quad' %}">Quad Members</a></li>
+                    
+                    
+                    
                 </ul>
             </div>
         </div>

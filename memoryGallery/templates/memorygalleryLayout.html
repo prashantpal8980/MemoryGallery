@@ -44,10 +44,18 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'IncidentSeenHere'%}">incidents</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'gallery' %}">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Recent Works</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'IncidentSeenHere'%}">Incidents</a></li>
+                   
+                    
+                    {% if request.path == "/memorygallery/" %}
+                    <a href="{% url 'gallery' %}" class="btn btn-info">BTech Images</a>
+                    {% elif request.path == "/memorygallery/gallery/" %}
+                    <a href="{% url 'memorygallery' %}" class="nav-link"> GalleryHome</a>
+                    {% endif %}
+
+                    
+                    <li class="nav-item"><a class="nav-link" href="{% url 'Quad' %}" >Quad Members</a></li>
+                   
                 </ul>
             </div>
         </div>

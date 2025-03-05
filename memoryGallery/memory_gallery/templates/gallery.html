@@ -1,277 +1,5 @@
 {% extends "memorygalleryLayout.html" %}
 {% load static %}
-
-{% comment %} {% extends "memorygalleryLayout.html" %}
-{% load static %}
-
-{% block title %}Memory Gallery{% endblock %}
-
-{% block content %}
-<div class="container text-center">
-    <h1 class="mb-4">Memory Gallery</h1>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
-        {% for image in image_urls %}
-        <div class="col">
-            <div class="card shadow-sm">
-                <img src="{{ image }}" class="card-img-top img-fluid fixed-size" alt="Gallery Image" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-image="{{ image }}">
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-</div>
-
-<!-- Modal for Enlarged Image -->
-<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Image Preview</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center">
-                <img id="modalImage" class="img-fluid" src="" alt="Gallery Image">
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Fix inconsistent image sizes -->
-<style>
-    .fixed-size {
-        width: 100%;
-        height: 550px; /* Set a fixed height */
-        object-fit: cover; /* Crop images while maintaining aspect ratio */
-        border-radius: 8px;
-    }
-</style>
-
-<script>
-    var imageModal = document.getElementById('imageModal');
-    imageModal.addEventListener('show.bs.modal', function (event) {
-        var button = event.relatedTarget;
-        var imageSrc = button.getAttribute('data-bs-image');
-        document.getElementById('modalImage').src = imageSrc;
-    });
-</script>
-
-{% endblock %} {% endcomment %}
-
-
-
-{% comment %} {% block title %}Memory Gallery{% endblock %}
-
-{% block content %}
-
-
-<div class="container text-center">
-    <h1 class="mb-4">Memory Gallery</h1>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
-        {% for image in page_obj %}
-        <div class="col">
-            <div class="card shadow-sm">
-                <img src="{{ image }}" class="card-img-top img-fluid fixed-size" alt="Gallery Image" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-image="{{ image }}">
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-
-    <!-- Pagination Controls -->
-    <nav class="mt-4">
-        <ul class="pagination justify-content-center">
-            {% if page_obj.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page=1">First</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-                </li>
-            {% endif %}
-
-            <li class="page-item disabled">
-                <span class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
-            </li>
-
-            {% if page_obj.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-                </li>
-            {% endif %}
-        </ul>
-    </nav>
-</div>
-
-<!-- Modal for Enlarged Image -->
-<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Image Preview</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center">
-                <img id="modalImage" class="img-fluid" src="" alt="Gallery Image">
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Styling for Image Layout -->
-<style>
-    .fixed-size {
-        width: 100%;
-        height: 250px; /* Set a fixed height */
-        object-fit: cover; /* Crop images while maintaining aspect ratio */
-        border-radius: 8px;
-    }
-</style>
-
-<script>
-    var imageModal = document.getElementById('imageModal');
-    imageModal.addEventListener('show.bs.modal', function (event) {
-        var button = event.relatedTarget;
-        var imageSrc = button.getAttribute('data-bs-image');
-        document.getElementById('modalImage').src = imageSrc;
-    });
-</script>
-
-{% endblock %} {% endcomment %}
-
-{% comment %} 
-
-{% block title %}Memory Gallery{% endblock %} 
-
-{% block content %}
-
-<style>
-    /* Gallery Grid */
-    .gallery {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 10px;
-        padding: 20px;
-    }
-
-    .gallery img {
-        width: 100%;
-        height: auto;
-        cursor: pointer;
-        border-radius: 5px;
-        transition: transform 0.2s;
-    }
-
-    .gallery img:hover {
-        transform: scale(1.05);
-    }
-
-    /* Full-Screen Modal */
-    .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-    }
-
-    .modal.active {
-        display: flex;
-    }
-
-    .modal img {
-        max-width: 90vw;
-        max-height: 90vh;
-        object-fit: contain;
-        border-radius: 5px;
-    }
-
-    .close {
-        position: absolute;
-        top: 10px;
-        right: 20px;
-        font-size: 30px;
-        color: white;
-        cursor: pointer;
-    }
-</style>
-
-<!-- Gallery Grid -->
-<div class="gallery">
-    {% for image in page_obj %}
-        <img src="{{ image }}" class="gallery-image" alt="Gallery Image">
-    {% endfor %}
-</div>
-
-<!-- Full-Screen Modal -->
-<div class="modal">
-    <span class="close">&times;</span>
-    <img src="" alt="Preview">
-</div>
-
-<!-- Pagination Controls -->
-<div class="container text-center mt-4">
-    <nav>
-        <ul class="pagination justify-content-center">
-            {% if page_obj.has_previous %}
-                <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
-                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
-            {% endif %}
-
-            <li class="page-item disabled">
-                <span class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
-            </li>
-
-            {% if page_obj.has_next %}
-                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
-                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
-            {% endif %}
-        </ul>
-    </nav>
-</div>
-
-<!-- JavaScript for Modal Functionality -->
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const images = document.querySelectorAll(".gallery-image");
-        const modal = document.querySelector(".modal");
-        const modalImg = modal.querySelector("img");
-        const closeBtn = modal.querySelector(".close");
-
-        images.forEach(img => {
-            img.addEventListener("click", function() {
-                modalImg.src = this.src;
-                modal.classList.add("active");
-            });
-        });
-
-        closeBtn.addEventListener("click", function() {
-            modal.classList.remove("active");
-        });
-
-        modal.addEventListener("click", function(event) {
-            if (event.target === modal) {
-                modal.classList.remove("active");
-            }
-        });
-    });
-</script>
-
-{% endblock %}   {% endcomment %}
-
-
-
-
-
-
-{% comment %} 
-
-
 {% block content %}
 <style>
     /* Gallery Grid */
@@ -279,16 +7,16 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        align-items: flex-start;
+        align-items: flex-center;
         gap: 10px;
-        padding: 20px;
+        padding: 30px;
     }
 
     .gallery img {
         width: 100%;
         height: auto;
-        max-width: 200px;
-        max-height: 200px;
+        max-width: 300px;
+        max-height: 300px;
         cursor: pointer;
         border-radius: 5px;
         transition: transform 0.2s;
@@ -337,7 +65,7 @@
         overflow: hidden;
     }
 </style>
-
+<h1>All the Photos that i have of my btech</h1>
 <!-- Gallery Grid -->
 <div class="gallery">
     {% for image in page_obj %}
@@ -350,7 +78,26 @@
     <span class="close">&times;</span>
     <img src="" alt="Preview">
 </div>
+<!-- Pagination Controls -->
+<div class="container text-center mt-4">
+    <nav>
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+            {% endif %}
 
+            <li class="page-item disabled">
+                <span class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+            </li>
+
+            {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const images = document.querySelectorAll(".gallery-image");
@@ -376,105 +123,4 @@
 </script>
 
 {% endblock %}
- {% endcomment %}
 
-
- {% block content %}
-<style>
-    /* Gallery Grid */
-    .gallery {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
-        padding: 20px;
-    }
-
-    .gallery img {
-        width: 100%;
-        height: auto;
-        cursor: pointer;
-        border-radius: 5px;
-        transition: transform 0.2s;
-        object-fit: cover;
-    }
-
-    .gallery img:hover {
-        transform: scale(1.05);
-    }
-
-    /* Full-Screen Modal */
-    .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-    }
-
-    .modal.active {
-        display: flex;
-    }
-
-    .modal img {
-        max-width: 90vw;
-        max-height: 90vh;
-        object-fit: contain;
-        border-radius: 5px;
-    }
-
-    .close {
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        font-size: 25px;
-        color: white;
-        cursor: pointer;
-    }
-
-    body.modal-open {
-        overflow: hidden;
-    }
-</style>
-
-<!-- Gallery Grid -->
-<div class="gallery">
-    {% for image in page_obj %}
-        <img src="{{ image }}" class="gallery-image" alt="Gallery Image">
-    {% endfor %}
-</div>
-
-<!-- Modal for Full-Screen Image -->
-<div class="modal">
-    <span class="close">&times;</span>
-    <img src="" alt="Preview">
-</div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const images = document.querySelectorAll(".gallery-image");
-        const modal = document.querySelector(".modal");
-        const modalImg = document.querySelector(".modal img");
-        const closeBtn = document.querySelector(".modal .close");
-
-        images.forEach(img => {
-            img.addEventListener("click", function() {
-                modalImg.src = this.src;
-                modal.classList.add("active");
-                document.body.classList.add("modal-open");  // Prevents scrolling
-            });
-        });
-
-        modal.addEventListener("click", function(event) {
-            if (event.target === modal || event.target === closeBtn) {
-                modal.classList.remove("active");
-                document.body.classList.remove("modal-open");  // Re-enable scrolling
-            }
-        });
-    });
-</script>
-{% endblock %}

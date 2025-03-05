@@ -1,0 +1,19 @@
+{% extends "incidentLayout.html" %}
+{% load static %}
+{% block title %}Quad{% endblock title %}
+{% block content %}
+<h1>Introduction to Quad members</h1>
+
+<!-- Flex container to align cards side by side -->
+<div class="d-flex flex-wrap gap-3">
+    {% for images, description in image_data %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{ images }}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <p class="card-text">{{ description }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}
