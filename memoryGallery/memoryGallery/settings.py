@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-82+k8fa7806s*@s$8!0s_=jjs_w-sm*ebs#s7q-(vrzzb6#907'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['memorygallery.space']
 
 
 # Application definition
