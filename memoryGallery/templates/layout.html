@@ -41,6 +41,7 @@
                             {% csrf_token %}
                             <button type="submit" class="btn btn-danger">Logout</button>
                         </form>
+                        <a href="{% url 'IncidentSeenHere' %}" class="btn btn-success">Click me</a>
                         
                     {% else %}
                         {% comment %} <a href="{% url 'register'%}" class="btn btn-primary mx-2">Register</a> {% endcomment %}
