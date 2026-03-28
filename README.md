@@ -24,13 +24,6 @@ This project is designed to run within the **Oracle Always Free** limits.
 * **Specs:** 1 OCPU, 1 GB RAM
 * **Best for:** Lightweight testing and small personal projects.
 
-### 🔹 2. ARM Ampere Shape (High Performance)
-
-* **Shape:** `VM.Standard.A1.Flex`
-* **Specs:** Up to 4 OCPU, 24 GB RAM
-* **Storage:** Up to 200 GB (Balanced Performance VPU 10)
-* **Note:** In busy regions like **Mumbai (AP-MUMBAI-1)**, you may encounter *"Out of Capacity"* errors.
-
 ---
 
 ## 🛠️ Step 1: Server Preparation
