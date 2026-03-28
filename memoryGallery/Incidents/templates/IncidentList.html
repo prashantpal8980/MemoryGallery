@@ -18,8 +18,9 @@ incident List
   
 }
 </style>
-<h1>All the incidents are listed here</h1>
-<a class="btn btn-primary mb-4" href="{% url 'IncidentCreated'%}">Create new indcident</a>
+<h1>Remember any incident of B.tech</h1>
+<h2>Make sure to upload it.</h2>
+<a class="btn btn-primary mb-4" href="{% url 'IncidentCreated'%}">Upload indcident</a>
 <div class="container row gap-3">
     {% for incident in incidents %}
     <div class="card" style="width: 18rem;">

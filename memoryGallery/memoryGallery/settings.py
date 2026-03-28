@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-82+k8fa7806s*@s$8!0s_=jjs_w-sm*ebs#s7q-(vrzzb6#907'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['memorygallery.space','127.0.0.1']
+ALLOWED_HOSTS = ['192.168.31.216','127.0.0.1','0.0.0.0','localhost','memorygallery.space']
 
 
 # Application definition
@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'memory_gallery',
     'Incidents',
 ]
+
+INTERNAL_IPS = ['127.0.0.1']
+NPM_BIN_PATH = '/home/kalip/.config/nvm/versions/node/v22.14.0/bin/npm'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -124,13 +127,38 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+# STATIC_URL = '/static/' # below this add the following line
+
+
+
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
-STATIC_URL = 'static/' # below this add the following line
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 LOGIN_URL = '/accounts/login'
 LOGIN_REDIRECT_URL = '/Incidents/'
 LOGOUT_REDIRECT_URL = '/'
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://memorygallery.space",
+    "https://www.memorygallery.space",
+]
+
+# Maximum upload size (20MB)
+DATA_UPLOAD_MAX_MEMORY_SIZE = 20 * 1024 * 1024  # 20MB
+FILE_UPLOAD_MAX_MEMORY_SIZE = 20 * 1024 * 1024  # 20MB
+
+# Allowed file size when using reverse proxy like Nginx or Apache
+FILE_UPLOAD_HANDLERS = [
+    'django.core.files.uploadhandler.MemoryFileUploadHandler',
+    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+]
