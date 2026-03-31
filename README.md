@@ -58,7 +58,7 @@ Edit `settings.py`:
 
 ```python
 DEBUG = False
-ALLOWED_HOSTS = ['prashantpal.online', 'www.prashantpal.online']
+ALLOWED_HOSTS = ['domain']
 ```
 
 Run:
