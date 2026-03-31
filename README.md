@@ -142,6 +142,8 @@ sudo systemctl restart gunicorn
 ```bash
 sudo chown -R ubuntu:www-data /home/ubuntu/memory-gallery
 sudo chmod 755 /home/ubuntu
+sudo iptables -I INPUT 1 -p tcp --dport 80 -j ACCEPT
+sudo iptables -I INPUT 1 -p tcp --dport 443 -j ACCEPT
 ```
 
 ### Oracle Cloud Ingress Rule
