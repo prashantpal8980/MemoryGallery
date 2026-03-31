@@ -1,6 +1,6 @@
 # 🚀 Memory Gallery – Django Deployment Guide
 
-A high-performance Django application for managing personal galleries, optimized for **Oracle Cloud Always Free Tier** using a production-ready stack: **Gunicorn + Nginx**.
+A high-performance Django application for managing personal galleries, optimized for **Oracle Cloud Always Free Tier** using a production-ready stack: **Gunicorn + Nginx + SSL**.
 
 ---
 
@@ -9,8 +9,10 @@ A high-performance Django application for managing personal galleries, optimized
 * **Framework:** Django (Python 3.10+)
 * **WSGI Server:** Gunicorn
 * **Reverse Proxy:** Nginx
+* **SSL Certificate:** Let's Encrypt (Certbot)
 * **Infrastructure:** Oracle Cloud VPS (Ubuntu 24.04 LTS)
 * **Database:** SQLite (Default)
+* **Live URL:** [https://prashantpal.online](https://prashantpal.online)
 
 ---
 
@@ -56,7 +58,7 @@ Edit `settings.py`:
 
 ```python
 DEBUG = False
-ALLOWED_HOSTS = ['your_server_public_ip']
+ALLOWED_HOSTS = ['prashantpal.online', 'www.prashantpal.online']
 ```
 
 Run:
@@ -109,7 +111,7 @@ sudo nano /etc/nginx/sites-available/memory-gallery
 ```nginx
 server {
     listen 80;
-    server_name your_server_public_ip;
+    server_name prashantpal.online www.prashantpal.online;
 
     location /static/ {
         alias /home/ubuntu/memory-gallery/staticfiles/;
@@ -144,39 +146,80 @@ sudo chown -R ubuntu:www-data /home/ubuntu/memory-gallery
 sudo chmod 755 /home/ubuntu
 ```
 
-### Oracle Cloud Ingress Rule
+### Oracle Cloud Ingress Rules
 
-* Source: `0.0.0.0/0`
-* Protocol: TCP
-* Port: `80`
+| Protocol | Port | Source      |
+| -------- | ---- | ----------- |
+| TCP      | 80   | 0.0.0.0/0   |
+| TCP      | 443  | 0.0.0.0/0   |
+
+---
+
+## 🔒 Step 7: HTTPS / SSL Setup (Let's Encrypt + Certbot)
+
+This site is secured using **Let's Encrypt** and **Certbot** for Nginx.
+
+### 1. Install Certbot and the Nginx plugin
+
+```bash
+sudo apt update
+sudo apt install certbot python3-certbot-nginx -y
+```
+
+### 2. Obtain and install the SSL certificate
+
+```bash
+sudo certbot --nginx -d prashantpal.online -d www.prashantpal.online
+```
+
+Certbot will automatically:
+- Verify domain ownership via HTTP challenge
+- Obtain a free SSL certificate from Let's Encrypt
+- Modify your Nginx config to redirect HTTP → HTTPS
+
+### 3. Verify auto-renewal
+
+Let's Encrypt certificates expire every 90 days. Certbot installs a systemd timer to handle renewal automatically. Test it with:
+
+```bash
+sudo certbot renew --dry-run
+```
+
+### 4. After SSL setup — update Django settings
+
+```python
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+```
 
 ---
 
 ## 🌍 Final Result
-
-```
-http://your_public_ip
-```
+https://prashantpal.online
 
 ---
 
 ## ⚠️ Common Issues
 
-| Issue              | Solution                   |
-| ------------------ | -------------------------- |
-| 502 Bad Gateway    | Check Gunicorn socket path |
-| Permission denied  | Fix directory permissions  |
-| Static not loading | Run `collectstatic`        |
-| Site not reachable | Open port 80               |
+| Issue                  | Solution                              |
+| ---------------------- | ------------------------------------- |
+| 502 Bad Gateway        | Check Gunicorn socket path            |
+| Permission denied      | Fix directory permissions             |
+| Static not loading     | Run `collectstatic`                   |
+| Site not reachable     | Open ports 80 and 443                 |
+| SSL certificate error  | Re-run `certbot --nginx`              |
+| Certbot renewal fails  | Ensure port 80 is open for challenges |
 
 ---
 
 ## 🚀 Future Improvements
 
-* Add HTTPS (Certbot SSL)
-* Connect custom domain
-* Use PostgreSQL
-* Add CI/CD pipeline
+* [x] Add HTTPS (Certbot SSL) ✅
+* [x] Connect custom domain ✅
+* [ ] Use PostgreSQL
+* [ ] Add CI/CD pipeline
+* [ ] Set up automated backups
 
 ---
 
@@ -184,3 +227,4 @@ http://your_public_ip
 
 **Prashant Pal**
 Cybersecurity Enthusiast | Django Developer
+🌐 [prashantpal.online](https://prashantpal.online)
